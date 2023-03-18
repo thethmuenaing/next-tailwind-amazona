@@ -3,16 +3,17 @@ import { Store } from "@/utils/Store";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-// import { XCircleIcon } from "@heroicons/react";
 
 export default function CartScreen() {
-	const { state } = useContext(Store);
+	const { state, dispatch } = useContext(Store);
 
 	const {
 		cart: { cartItems },
 	} = state;
 
-	const removeItemHandler = () => {};
+	const removeItemHandler = (item) => {
+		dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+	};
 	return (
 		<Layout title="Shopping Cart">
 			<h1 className="mb-4 text-xl">Shopping Cart</h1>
