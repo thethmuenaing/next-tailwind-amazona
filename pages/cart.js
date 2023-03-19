@@ -1,11 +1,12 @@
 import Layout from "@/components/Layout";
 import { Store } from "@/utils/Store";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 
-export default function CartScreen() {
+function CartScreen() {
 	const { state, dispatch } = useContext(Store);
 	const router = useRouter();
 
@@ -17,8 +18,6 @@ export default function CartScreen() {
 		dispatch({ type: "CART_REMOVE_ITEM", payload: item });
 	};
 	const updateCartHandler = (item, qty) => {
-		console.log("e.targer ", qty);
-		console.log("item-1 ", item);
 		const quantity = Number(qty);
 		dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
 	};
@@ -119,3 +118,5 @@ export default function CartScreen() {
 		</Layout>
 	);
 }
+
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
