@@ -1,7 +1,6 @@
 import User from "@/models/User";
 import data from "@/utils/data";
-
-const { default: db } = require("@/utils/db");
+import db from "@/utils/db";
 
 const handler = async (req, res) => {
 	await db.connect();
