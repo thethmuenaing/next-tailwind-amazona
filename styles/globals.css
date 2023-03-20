@@ -119,3 +119,9 @@ a {
 .primary-button {
 	@apply rounded bg-yellow-300 py-2 px-4 shadow outline-none hover:bg-yellow-400 active:bg-yellow-500;
 }
+
+input,
+select,
+textarea {
+	@apply rounded border p-2 outline-none ring-indigo-300 focus:ring;
+}
