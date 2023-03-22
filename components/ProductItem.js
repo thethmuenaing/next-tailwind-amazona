@@ -1,18 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { Store } from "@/utils/Store";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React from "react";
 
-export default function ProductItem({ product }) {
-	const { state, dispatch } = useContext(Store);
-	const addToCartHandler = () => {
-		const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
-		const quantity = existItem ? existItem.quantity + 1 : 1;
-		if (product.countInStock < quantity) {
-			alert("Sorry, Product is out of stock");
-		}
-		dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
-	};
+export default function ProductItem({ product, addToCartHandler }) {
 	return (
 		<div className="card">
 			<Link href={`/product/${product.slug}`}>
@@ -31,7 +21,7 @@ export default function ProductItem({ product }) {
 				<button
 					className="primary-button"
 					type="button"
-					onClick={addToCartHandler}
+					onClick={() => addToCartHandler(product)}
 				>
 					Add to cart
 				</button>
