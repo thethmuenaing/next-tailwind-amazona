@@ -205,7 +205,7 @@ function OrderScreen() {
 							</table>
 						</div>
 					</div>
-					<div>
+					<div className="w-full">
 						<div className="card p-5">
 							<h2 className="mb-2 text-lg">Order Summary</h2>
 							<ul>
