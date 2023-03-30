@@ -5,8 +5,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
+import { Store } from "@/utils/Store";
 
 function reducer(state, action) {
 	switch (action.type) {
@@ -37,6 +38,8 @@ function reducer(state, action) {
 }
 
 function OrderScreen() {
+	const { state } = useContext(Store);
+	const { darkMode } = state;
 	//  order/:id
 	const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 	const { query } = useRouter();
@@ -143,7 +146,11 @@ function OrderScreen() {
 			) : (
 				<div className="grid md:grid-cols-4 md:gap-5">
 					<div className="overflow-x-auto md:col-span-3">
-						<div className="card p-5">
+						<div
+							className={`card p-5  ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Shipping Address</h2>
 							<div>
 								{shippingAddress.fullName}, {shippingAddress.address},{" "}
@@ -157,7 +164,11 @@ function OrderScreen() {
 							)}
 						</div>
 
-						<div className="card p-5">
+						<div
+							className={`card p-5  ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Payment Method</h2>
 							<div>{paymentMethod}</div>
 							{isPaid ? (
@@ -166,7 +177,11 @@ function OrderScreen() {
 								<div className="alert-error">Not paid</div>
 							)}
 						</div>
-						<div className="card overflow-x-auto p-5">
+						<div
+							className={`card p-5 overflow-x-auto  ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Order Items</h2>
 							<table className="min-w-full">
 								<thead className="border-b">
@@ -206,7 +221,11 @@ function OrderScreen() {
 						</div>
 					</div>
 					<div className="w-full">
-						<div className="card p-5">
+						<div
+							className={`card p-5  ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Order Summary</h2>
 							<ul>
 								<li>

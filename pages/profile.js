@@ -1,12 +1,15 @@
 import Layout from "@/components/Layout";
 import { getError } from "@/utils/error";
+import { Store } from "@/utils/Store";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function ProfileScreen() {
+	const { state } = useContext(Store);
+	const { darkMode } = state;
 	const { data: session } = useSession();
 	const {
 		handleSubmit,
@@ -54,7 +57,11 @@ export default function ProfileScreen() {
 					<input
 						type="name"
 						id="name"
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						autoFocus
 						{...register("name", {
 							required: "Please enter name",
@@ -70,7 +77,11 @@ export default function ProfileScreen() {
 					<input
 						type="email"
 						id="email"
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						{...register("email", {
 							required: "Please enter email",
 							pattern: {
@@ -89,7 +100,11 @@ export default function ProfileScreen() {
 					<input
 						type="password"
 						id="password"
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						{...register("password", {
 							minLength: { value: 6, message: "password is more than 5 chars" },
 						})}
@@ -104,7 +119,11 @@ export default function ProfileScreen() {
 					<input
 						type="password"
 						id="confirmPassword"
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						{...register("confirmPassword", {
 							validate: (value) => value === getValues("password"),
 							minLength: { value: 6, message: "password is more than 5 chars" },

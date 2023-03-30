@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 export default function ProdictScreen(props) {
 	const { product } = props;
 	const { state, dispatch } = useContext(Store);
+	const { darkMode } = state;
 	const router = useRouter();
 
 	// const { query } = useRouter();
@@ -37,7 +38,7 @@ export default function ProdictScreen(props) {
 				<Link href="/">back to products</Link>
 			</div>
 			<div className="grid md:grid-cols-4 md:gap-3">
-				<div className="md:col-span-2">
+				<div className="md:col-span-2 rounded-md overflow-hidden">
 					<Image
 						src={product.image}
 						alt={product.name}
@@ -47,20 +48,35 @@ export default function ProdictScreen(props) {
 					></Image>
 				</div>
 				<div>
-					<ul>
+					<ul className="space-y-2">
 						<li>
-							<h1 className="text-lg">{product.name}</h1>
+							<h1 className="text-[3rem]">{product.name}</h1>
 						</li>
-						<li>Category: {product.category}</li>
-						<li>Brand: {product.brand}</li>
-						<li>
-							{product.rating} of {product.numReviews} reviews
+						<li className="text-xl">
+							Category:{" "}
+							<span className="font-semibold">{product.category}</span>
 						</li>
-						<li>Description: {product.description}</li>
+						<li className="text-xl">
+							Brand: <span className="font-semibold">{product.brand}</span>
+						</li>
+						<li className="text-xl">
+							Rating:{" "}
+							<span className="font-semibold">
+								{product.rating} stars ({product.numReviews} reviews)
+							</span>
+						</li>
+						<li className="text-xl">
+							Description:{" "}
+							<span className="font-semibold">{product.description}</span>
+						</li>
 					</ul>
 				</div>
 				<div>
-					<div className="card p-5">
+					<div
+						className={`card p-5 ${
+							darkMode ? "bg-[#373737]" : " border border-gray-200"
+						}`}
+					>
 						<div className="mb-2 flex justify-between">
 							<div>Price</div>
 							<div>${product.price}</div>
@@ -70,7 +86,9 @@ export default function ProdictScreen(props) {
 							<div>{product.countInStock > 0 ? "In stock" : "Unavailable"}</div>
 						</div>
 						<button
-							className="primary-button w-full"
+							className={`primary-button w-full uppercase font-semibold ${
+								darkMode ? "text-black" : ""
+							}`}
 							onClick={addToCartHandler}
 						>
 							Add to cart

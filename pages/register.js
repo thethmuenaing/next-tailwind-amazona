@@ -1,14 +1,17 @@
 import Layout from "@/components/Layout";
 import { getError } from "@/utils/error";
+import { Store } from "@/utils/Store";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function RegisterScreen() {
+	const { state } = useContext(Store);
+	const { darkMode } = state;
 	const { data: session } = useSession();
 	const router = useRouter();
 	const { redirect } = router.query;
@@ -52,14 +55,20 @@ export default function RegisterScreen() {
 				<h1 className="mb-4 text-xl">Login</h1>
 
 				<div className="mb-4">
-					<label htmlFor="email">Name</label>
+					<label htmlFor="email">
+						<span className="text-red-500">*</span> Name
+					</label>
 					<input
 						type="text"
 						id="name"
 						{...register("name", {
 							required: "Please enter name",
 						})}
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						autoFocus
 					></input>
 					{errors.name && (
@@ -68,7 +77,9 @@ export default function RegisterScreen() {
 				</div>
 
 				<div className="mb-4">
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">
+						<span className="text-red-500">*</span> Email
+					</label>
 					<input
 						type="email"
 						id="email"
@@ -79,14 +90,20 @@ export default function RegisterScreen() {
 								message: "Pleasu enter valid email",
 							},
 						})}
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 					></input>
 					{errors.email && (
 						<div className="text-red-500">{errors.email.message} </div>
 					)}
 				</div>
 				<div className="mb-4">
-					<label htmlFor="password">Password</label>
+					<label htmlFor="password">
+						<span className="text-red-500">*</span> Password
+					</label>
 					<input
 						type="password"
 						id="password"
@@ -94,7 +111,11 @@ export default function RegisterScreen() {
 							required: "Please enter password",
 							minLength: { value: 6, message: "password is more than 5 chars" },
 						})}
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						autoFocus
 					></input>
 					{errors.password && (
@@ -103,7 +124,9 @@ export default function RegisterScreen() {
 				</div>
 
 				<div className="mb-4">
-					<label htmlFor="confirmPassword">Confirm Password</label>
+					<label htmlFor="confirmPassword">
+						<span className="text-red-500">*</span> Confirm Password
+					</label>
 					<input
 						type="password"
 						id="confirmPassword"
@@ -115,7 +138,11 @@ export default function RegisterScreen() {
 								message: "confirm password is more than 5 chars",
 							},
 						})}
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						autoFocus
 					></input>
 					{errors.confirmPassword && (

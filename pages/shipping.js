@@ -14,7 +14,7 @@ export default function ShippingScreen() {
 		setValue,
 	} = useForm();
 	const { state, dispatch } = useContext(Store);
-	const { cart } = state;
+	const { cart, darkMode } = state;
 	const { shippingAddress } = cart;
 	const router = useRouter();
 
@@ -56,9 +56,15 @@ export default function ShippingScreen() {
 			>
 				<h1 className="mb-4 text-xl">Shipping Adderss</h1>
 				<div className="mb-4">
-					<label htmlFor="fullName">Full Name</label>
+					<label htmlFor="fullName">
+						<span className="text-red-500">*</span> Full Name
+					</label>
 					<input
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						id="fullName"
 						autoFocus
 						{...register("fullName", { required: "Please enter full name" })}
@@ -68,9 +74,15 @@ export default function ShippingScreen() {
 					)}
 				</div>
 				<div className="mb-4">
-					<label htmlFor="address">Address</label>
+					<label htmlFor="address">
+						<span className="text-red-500">*</span> Address
+					</label>
 					<input
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						id="address"
 						{...register("address", {
 							required: "Please enter address",
@@ -82,9 +94,15 @@ export default function ShippingScreen() {
 					)}
 				</div>
 				<div className="mb-4">
-					<label htmlFor="city">City</label>
+					<label htmlFor="city">
+						<span className="text-red-500">*</span> City
+					</label>
 					<input
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						id="city"
 						{...register("city", {
 							required: "Please enter city",
@@ -95,9 +113,15 @@ export default function ShippingScreen() {
 					)}
 				</div>
 				<div className="mb-4">
-					<label htmlFor="postalCode">Postal Code</label>
+					<label htmlFor="postalCode">
+						<span className="text-red-500">*</span> Postal Code
+					</label>
 					<input
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						id="postalCode"
 						{...register("postalCode", {
 							required: "Please enter postal code",
@@ -108,9 +132,15 @@ export default function ShippingScreen() {
 					)}
 				</div>
 				<div className="mb-4">
-					<label htmlFor="postalCode">Country</label>
+					<label htmlFor="postalCode">
+						<span className="text-red-500">*</span> Country
+					</label>
 					<input
-						className="w-full"
+						className={`w-full ${
+							darkMode
+								? "text-black bg-white"
+								: "bg-gray-200 focus:bg-transparent"
+						}`}
 						id="country"
 						{...register("country", {
 							required: "Please enter country",

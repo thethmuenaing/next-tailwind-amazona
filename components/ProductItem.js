@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import React from "react";
 
 export default function ProductItem({ product, addToCartHandler }) {
 	return (
-		<div className="card">
+		<div className={`card border border-gray-200`}>
 			<Link href={`/product/${product.slug}`}>
 				<img
 					src={product.image}
@@ -19,7 +18,7 @@ export default function ProductItem({ product, addToCartHandler }) {
 				<p className="mb-2">{product.brand}</p>
 				<p>${product.price}</p>
 				<button
-					className="primary-button"
+					className={`primary-button`}
 					type="button"
 					onClick={() => addToCartHandler(product)}
 				>

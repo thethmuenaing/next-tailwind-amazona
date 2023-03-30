@@ -12,7 +12,7 @@ import { Store } from "@/utils/Store";
 
 export default function PlaceOrderScreen() {
 	const { state, dispatch } = useContext(Store);
-	const { cart } = state;
+	const { cart, darkMode } = state;
 	const { cartItems, shippingAddress, paymentMethod } = cart;
 
 	const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
@@ -73,7 +73,11 @@ export default function PlaceOrderScreen() {
 			) : (
 				<div className="grid md:grid-cols-4 md:gap-5">
 					<div className="overflow-x-auto md:col-span-3">
-						<div className="card  p-5">
+						<div
+							className={`card p-5 ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Shipping Address</h2>
 							<div>
 								{shippingAddress.fullName}, {shippingAddress.address},{" "}
@@ -81,17 +85,35 @@ export default function PlaceOrderScreen() {
 								{shippingAddress.country}
 							</div>
 							<div>
-								<Link href="/shipping">Edit</Link>
+								<Link
+									href="/shipping"
+									className={`bg-green-400 px-4 py-3 mt-2 rounded-md shadow-md hover:bg-green-600 w-20 flex items-center justify-center text-white`}
+								>
+									Edit
+								</Link>
 							</div>
 						</div>
-						<div className="card  p-5">
+						<div
+							className={`card p-5  ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Payment Method</h2>
 							<div>{paymentMethod}</div>
 							<div>
-								<Link href="/payment">Edit</Link>
+								<Link
+									href="/payment"
+									className={`bg-green-400 px-4 py-3 mt-2 rounded-md shadow-md hover:bg-green-600 w-20 flex items-center justify-center text-white`}
+								>
+									Edit
+								</Link>
 							</div>
 						</div>
-						<div className="card overflow-x-auto p-5">
+						<div
+							className={`card p-5 overflow-x-auto ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Order Items</h2>
 							<table className="min-w-full">
 								<thead className="border-b">
@@ -130,12 +152,21 @@ export default function PlaceOrderScreen() {
 								</tbody>
 							</table>
 							<div>
-								<Link href="/cart">Edit</Link>
+								<Link
+									href="/cart"
+									className={`bg-green-400 px-4 py-3 mt-2 rounded-md shadow-md hover:bg-green-600 w-20 flex items-center justify-center text-white`}
+								>
+									Edit
+								</Link>
 							</div>
 						</div>
 					</div>
 					<div>
-						<div className="card  p-5">
+						<div
+							className={`card p-5 overflow-x-auto ${
+								darkMode ? "bg-[#373737]" : " border border-gray-200"
+							}`}
+						>
 							<h2 className="mb-2 text-lg">Order Summary</h2>
 							<ul>
 								<li>

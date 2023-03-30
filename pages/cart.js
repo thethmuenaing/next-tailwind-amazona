@@ -14,6 +14,7 @@ function CartScreen() {
 
 	const {
 		cart: { cartItems },
+		darkMode,
 	} = state;
 
 	const removeItemHandler = (item) => {
@@ -41,7 +42,8 @@ function CartScreen() {
 						<table className="min-w-full">
 							<thead className="border-b">
 								<tr>
-									<th className="px-5 text-left">Item</th>
+									<th className="px-5 text-left">Image</th>
+									<th className="px-5 text-left">Name</th>
 									<th className="p-5 text-right">Quantity</th>
 									<th className="p-5 text-right">Price</th>
 									<th className="p-5">Action</th>
@@ -50,7 +52,7 @@ function CartScreen() {
 							<tbody>
 								{cartItems.map((item) => (
 									<tr key={item.slug} className="border-b">
-										<td>
+										<td className="px-5 py-2">
 											<Link
 												href={`/product/${item.slug}`}
 												className="flex items-center"
@@ -58,13 +60,26 @@ function CartScreen() {
 												<Image
 													src={item.image}
 													alt={item.name}
-													width={50}
-													height={50}
+													width={60}
+													height={60}
 												></Image>
-												&nbsp; {item.name}
 											</Link>
 										</td>
-										<td className="p-5 text-right">
+										<td className="px-5 py-2">
+											<Link
+												href={`/product/${item.slug}`}
+												className={`hover:border-b-2 hover:border-blue-400 text-2xl ${
+													darkMode && "text-white hover:text-white"
+												}`}
+											>
+												{item.name}
+											</Link>
+										</td>
+										<td
+											className={`px-5 py-2 text-right ${
+												darkMode && "text-black"
+											}`}
+										>
 											<select
 												value={item.quantity}
 												onChange={(e) =>
@@ -78,10 +93,13 @@ function CartScreen() {
 												))}
 											</select>
 										</td>
-										<td className="p-5 text-right">${item.price}</td>
-										<td className="p-5 text-center">
-											<button onClick={() => removeItemHandler(item)}>
-												<svg
+										<td className="px-5 py-2 text-right">${item.price}</td>
+										<td className="px-5 py-2 text-center">
+											<button
+												onClick={() => removeItemHandler(item)}
+												className={`bg-green-600 px-5 py-3 rounded-md shadow-md hover:bg-green-700 text-white`}
+											>
+												{/* <svg
 													xmlns="http://www.w3.org/2000/svg"
 													fill="none"
 													viewBox="0 0 24 24"
@@ -92,9 +110,10 @@ function CartScreen() {
 													<path
 														strokeLinecap="round"
 														strokeLinejoin="round"
-														d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+														d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
 													/>
-												</svg>
+												</svg> */}
+												X
 											</button>
 										</td>
 									</tr>
@@ -102,7 +121,11 @@ function CartScreen() {
 							</tbody>
 						</table>
 					</div>
-					<div className="card p-5">
+					<div
+						className={`card p-5 ${
+							darkMode ? "bg-[#373737]" : " border border-gray-200"
+						}`}
+					>
 						<ul>
 							<li>
 								<div className="pb-3 text-xl">
