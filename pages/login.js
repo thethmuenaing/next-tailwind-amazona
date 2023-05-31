@@ -45,7 +45,7 @@ export default function LoginScreen() {
 	return (
 		<Layout title="Login">
 			<form
-				className="mx-auto max-w-screen w-[30%]"
+				className="mx-auto max-w-screen w-[100%] md:w-[30%]"
 				onSubmit={handleSubmit(submitHandler)}
 			>
 				<Image src={Img} alt="" height={120} className="mx-auto -mt-5" />

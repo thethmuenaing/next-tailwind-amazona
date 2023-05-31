@@ -45,17 +45,17 @@ export default function Layout({ children, title }) {
 				}`}
 			>
 				<header>
-					<nav className="flex h-25 justify-between items-center px-4 shadow-md bg-[#203040]">
+					<nav className="flex h-25 justify-between items-center px-2 md:px-4 shadow-md bg-[#203040]">
 						<Link
 							href="/"
-							className="text-[3rem] text-blue-600 font-bold mb-[5px]"
+							className="text-[1.5rem] md:text-[3rem] text-blue-600 font-bold mb-[5px]"
 						>
 							amazona
 						</Link>
 						<div className="flex items-center">
 							<Switch
 								className={`${darkMode ? "bg-teal-900" : "bg-teal-700"}
-								 relative inline-flex h-[34px] w-[70px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+								 relative inline-flex h-[22px] w-[50px] md:h-[31px] md:w-[67px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
 								checked={darkMode}
 								onChange={darkModeChangeHandler}
 							>
@@ -63,15 +63,15 @@ export default function Layout({ children, title }) {
 									aria-hidden="true"
 									className={`${
 										darkMode
-											? "translate-x-9 bg-black"
+											? "translate-x-7 md:translate-x-9 bg-black"
 											: "translate-x-0 bg-white"
 									}
-								pointer-events-none inline-block h-[30px] w-[30px] transform rounded-full shadow-lg ring-0 transition duration-200 ease-in-out`}
+								pointer-events-none inline-block h-[18px] w-[18px] md:h-[27px] md:w-[27px] transform rounded-full shadow-lg ring-0 transition duration-200 ease-in-out`}
 								/>
 							</Switch>
 							<Link
 								href="/cart"
-								className="p-3 text-blue-600 text-2xl relative mx-2"
+								className="p-1 md:p-3 text-blue-600 text-[1rem] md:text-2xl relative mx-1 md:mx-2"
 							>
 								Cart
 								{cartItemsCount > 0 && (
@@ -85,7 +85,7 @@ export default function Layout({ children, title }) {
 								"Loading"
 							) : session?.user ? (
 								<Menu as="div" className="relative inline-block py-2">
-									<Menu.Button className="text-blue-600 text-2xl">
+									<Menu.Button className="text-blue-600 text-[1rem] md:text-2xl">
 										{session.user.name}
 									</Menu.Button>
 									<Menu.Items
@@ -127,7 +127,10 @@ export default function Layout({ children, title }) {
 									</Menu.Items>
 								</Menu>
 							) : (
-								<Link href="/login" className="p-3 text-blue-600 text-2xl">
+								<Link
+									href="/login"
+									className="p-2 md:p-3 text-blue-600 text-[1rem] md:text-2xl"
+								>
 									Login
 								</Link>
 							)}
